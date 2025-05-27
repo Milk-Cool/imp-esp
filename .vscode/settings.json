@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "*.ejs": "html",
+        "crypto_stream_chacha20.h": "c",
+        "new": "cpp",
+        "vector": "cpp"
+    }
+}
