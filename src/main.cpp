@@ -89,6 +89,6 @@ void loop() {
     // Serial.println();
     // delay(100);
     recv_loop();
-    delay(1);
     #endif
+    delay(1);
 }
