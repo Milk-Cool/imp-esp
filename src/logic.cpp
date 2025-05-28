@@ -25,6 +25,10 @@ void handle_packet(Packet packet, HandleCtx& ctx) {
     case 0x0001:
         ctx.authenticated = true;
         break;
+    case 0x0080:
+        ctx.phone_number = read_str0(packet.data, 0);
+        Serial.println("Phone number: " + ctx.phone_number);
+        break;
     default:
         break;
     }
