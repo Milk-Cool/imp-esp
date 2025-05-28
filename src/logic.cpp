@@ -22,6 +22,9 @@ void handle_packet(Packet packet, HandleCtx& ctx) {
     case 0x0000:
         challenge_respond(packet.data, ctx);
         break;
+    case 0x0001:
+        ctx.authenticated = true;
+        break;
     default:
         break;
     }
