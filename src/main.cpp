@@ -81,7 +81,9 @@ void setup() {
 }
 
 void loop() {
-    #if TYPE == 1
+    #if TYPE == 0
+    relay_loop();
+    #elif TYPE == 1
     // for(int i = 0; i < sizeof id; i++)
     //     Serial.printf("%02x ", id[i]);
     // Serial.println();

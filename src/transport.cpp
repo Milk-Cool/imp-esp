@@ -40,6 +40,7 @@ void init_relay() {
         }, upstream);
     }, NULL);
 }
+void relay_loop() {} // ESPAsyncTCP is ASYNC, so we don't need to fetch data in loop()
 #elif TYPE == 1 && TRANSPORT == 0
 static AsyncClient client;
 typedef struct {

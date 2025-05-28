@@ -5,6 +5,7 @@ using namespace std;
 
 #if TYPE == 0
 void init_relay();
+void relay_loop();
 #elif TYPE == 1
 void init_client();
 void transmit(vector<uint8_t>& data);
