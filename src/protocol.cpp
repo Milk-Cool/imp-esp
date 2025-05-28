@@ -61,7 +61,7 @@ Packet decrypt_packet(uint8_t key[32], uint8_t* data, size_t len) {
     enc.data.resize(len - 32);
     memcpy(enc.authtag, data + 12, 16);
     memcpy(enc.nonce, data, 12);
-    memcpy(enc.data.data(), data, len - 32);
+    memcpy(enc.data.data(), data + 32, len - 32);
     vector<uint8_t> dec = decrypt_only(key, enc);
     return deconstruct_packet(dec);
 }
