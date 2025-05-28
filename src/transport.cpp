@@ -75,10 +75,6 @@ void init_relay() {
         client->onData([](void* ctx_void, AsyncClient* client, void* data, size_t len) {
             CtxWithConnectInfo* ctx = (CtxWithConnectInfo*)ctx_void;
 
-            for(size_t i = 0; i < len; i++)
-                Serial.printf("%02x ", ((uint8_t*)data)[i]);
-            Serial.println();
-
             if(*ctx->connected)
                 ctx->client->write((const char*)data, len);
             else
