@@ -29,6 +29,12 @@ void handle_packet(Packet packet, HandleCtx& ctx) {
         ctx.phone_number = read_str0(packet.data, 0);
         Serial.println("Phone number: " + ctx.phone_number);
         break;
+    case 0x0100:
+        Serial.print("Message from ");
+        Serial.print(read_str0(packet.data, 0));
+        Serial.print(": ");
+        Serial.println(read_str0(packet.data, 0));
+        break;
     default:
         break;
     }
