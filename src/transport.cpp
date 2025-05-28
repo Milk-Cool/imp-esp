@@ -12,7 +12,6 @@ static AsyncServer server(PORT_RELAY);
 void init_relay() {
     WiFi.mode(WIFI_AP_STA);
     WiFi.softAP(IMP_SSID, IMP_PASS);
-    while(WiFi.softAPgetStationNum() == 0) delay(1);
 
     WiFi.begin(IMP_UPSTREAM_SSID, IMP_UPSTREAM_PASS);
     while(WiFi.status() != WL_CONNECTED) delay(10);
