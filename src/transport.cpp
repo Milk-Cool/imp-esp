@@ -78,4 +78,5 @@ void set_recv_listener(RecvListener listener) {
 void set_conn_listener(ConnListener listener) {
     listeners.conn_listener = listener;
 }
+void recv_loop() {} // ESPAsyncTCP is ASYNC, so we don't need to fetch data in loop()
 #endif

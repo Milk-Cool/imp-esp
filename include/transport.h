@@ -12,4 +12,5 @@ typedef void (*RecvListener)(uint8_t* data, size_t len);
 typedef void (*ConnListener)();
 void set_recv_listener(RecvListener listener);
 void set_conn_listener(ConnListener listener);
+void recv_loop();
 #endif

@@ -86,5 +86,7 @@ void loop() {
     //     Serial.printf("%02x ", id[i]);
     // Serial.println();
     // delay(100);
+    recv_loop();
+    delay(1);
     #endif
 }
