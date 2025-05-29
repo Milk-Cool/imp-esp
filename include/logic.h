@@ -6,7 +6,10 @@
 typedef struct {
     uint8_t* key;
     bool authenticated;
-    String phone_number;
 } HandleCtx;
 void handle_packet(Packet packet, HandleCtx& ctx);
+
+String get_my_number();
+
+void send_message(uint8_t* key, String num, String msg);
 #endif

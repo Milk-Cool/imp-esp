@@ -80,6 +80,11 @@ void setup() {
     #endif
 }
 
+#if TYPE == 1
+String msg;
+String num;
+#endif
+
 void loop() {
     #if TYPE == 0
     relay_loop();
@@ -89,6 +94,18 @@ void loop() {
     // Serial.println();
     // delay(100);
     recv_loop();
+    if(authenticated && Serial.available()) {
+        char c = Serial.read();
+        if(c == '\n') {
+            if(msg[0] == '/')
+                num = msg.substring(1);
+            else
+                send_message(key, num == "" ? get_my_number() : num, msg);
+            msg = "";
+        } else if(c != '\r')
+            msg += c;
+        Serial.write(c);
+    }
     #endif
     delay(1);
 }

@@ -3,6 +3,8 @@
 #include "transport.h"
 
 #if TYPE == 1
+static String phone_number;
+
 static void challenge_respond(vector<uint8_t> rand_data, HandleCtx ctx) {
     EncData enc = encrypt_only(ctx.key, rand_data);
     vector<uint8_t> vec;
@@ -26,8 +28,8 @@ void handle_packet(Packet packet, HandleCtx& ctx) {
         ctx.authenticated = true;
         break;
     case 0x0080:
-        ctx.phone_number = read_str0(packet.data, 0);
-        Serial.println("Phone number: " + ctx.phone_number);
+        phone_number = read_str0(packet.data, 0);
+        Serial.println("Phone number: " + phone_number);
         break;
     case 0x0100:
         Serial.print("Message from ");
@@ -38,5 +40,22 @@ void handle_packet(Packet packet, HandleCtx& ctx) {
     default:
         break;
     }
+}
+
+String get_my_number() {
+    return phone_number;
+}
+
+void send_message(uint8_t* key, String num, String msg) {
+    vector<uint8_t> packet_data;
+    write_str0(packet_data, num);
+    write_str0(packet_data, msg);
+    Packet packet = {
+        .id = 0x0100,
+        .data = packet_data
+    };
+
+    vector<uint8_t> encrypted = encrypt_packet(key, packet);
+    transmit(encrypted);
 }
 #endif
